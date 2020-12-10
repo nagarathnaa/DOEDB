@@ -11,7 +11,7 @@ services:
     networks:
       - doe-network
     ports:
-      - 1253:80
+      - 80:80
   doe_backend:
     depends_on:
       - doe_pg
