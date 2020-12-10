@@ -1,17 +1,17 @@
 version: "3"
 services:
   nginx:
+    depends_on:
+      - doe_backend
     container_name: "doe_nginx"
     build:
       context: /home/devops/myagent/_work/2/s/
       dockerfile: Dockerfile
     restart: unless-stopped
-    env_file:
-      - Database.env
     networks:
       - doe-network
     ports:
-      - 80:80
+      - 1253:80
   doe_backend:
     depends_on:
       - doe_pg
@@ -23,7 +23,7 @@ services:
     networks:
       - doe-network
     ports:
-      - 5000:5000
+      - "5000"
   doe_pg:
     image: "postgres:12"
     container_name: "doe_postgres"
