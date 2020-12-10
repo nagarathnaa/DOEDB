@@ -5,7 +5,7 @@ services:
       - doe_pg
     container_name: "doe_backend"
     build:
-      context: /home/devops/myagent/_work/1/s
+      context: /home/devops/myagent/_work/1/s/DOEAssessmentApp
       dockerfile: Dockerfile
     restart: unless-stopped
     networks:
