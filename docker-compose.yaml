@@ -23,7 +23,7 @@ services:
     networks:
       - doe-network
     ports:
-      - 5000
+      - 5000:5000
   doe_pg:
     image: "postgres:12"
     container_name: "doe_postgres"
