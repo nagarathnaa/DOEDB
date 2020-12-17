@@ -1,5 +1,15 @@
 version: "3"
 services:
+  doe_frontend:
+    container_name: "doe_frontend"
+    build:
+      context: /home/devops/myagent/_work/3/s/
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    networks:
+      - doe-network
+    ports:
+      - 80:5001
   nginx:
     depends_on:
       - doe_backend
