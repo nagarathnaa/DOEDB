@@ -9,7 +9,7 @@ services:
     networks:
       - doe-network
     ports:
-      - 80:5001
+      - 80:3000
   nginx:
     depends_on:
       - doe_backend
