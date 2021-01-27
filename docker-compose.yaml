@@ -10,6 +10,8 @@ services:
       - doe-network
     ports:
       - 80:80
+    links:
+      - doe_backend
   nginx:
     depends_on:
       - doe_backend
