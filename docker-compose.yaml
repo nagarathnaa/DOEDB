@@ -6,8 +6,6 @@ services:
       context: /home/devops/myagent/_work/3/s/
       dockerfile: Dockerfile
     restart: unless-stopped
-    environment:
-      - HOST_URL=23.96.17.234:1253
     networks:
       - doe-network
     ports:
