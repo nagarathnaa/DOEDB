@@ -7,6 +7,8 @@ services:
       dockerfile: Dockerfile
       args:
         - API_SERVER=${ENV_API_SERVER}
+      env_file:
+      - Database.env
     restart: unless-stopped
     environment:
       - HOST_URL=23.96.17.234:1253
