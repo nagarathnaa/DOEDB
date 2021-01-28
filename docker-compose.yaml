@@ -5,6 +5,8 @@ services:
     build:
       context: /home/devops/myagent/_work/3/s/
       dockerfile: Dockerfile
+      args:
+        - API_SERVER=${ENV_API_SERVER}
     restart: unless-stopped
     environment:
       - HOST_URL=23.96.17.234:1253
