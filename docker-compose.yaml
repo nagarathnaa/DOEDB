@@ -6,12 +6,14 @@ services:
       context: /home/devops/myagent/_work/3/s/
       dockerfile: Dockerfile
       args:
-        - ServerUrl= 23.96.17.234:1253
+        - ServerUrl= ${ENV_API_SERVER}
     restart: unless-stopped
     networks:
       - doe-network
     ports:
       - 80:80
+    env_file:
+      - Database.env
   nginx:
     depends_on:
       - doe_backend
