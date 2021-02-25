@@ -10,10 +10,11 @@ services:
     restart: unless-stopped
     networks:
       - doe-network
-    ports:
-      - "3000"
+    expose:
+      - 3000
     env_file:
       - .env
+    command: serve -s build -l 3000
   nginx:
     depends_on:
       - doe_backend
