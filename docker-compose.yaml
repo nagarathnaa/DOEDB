@@ -1,4 +1,4 @@
-version: "3.7"
+version: "3"
 services:
   doe_frontend:
     container_name: "doe_frontend"
@@ -10,11 +10,10 @@ services:
     restart: unless-stopped
     networks:
       - doe-network
-    expose:
-      - 3000
+    ports:
+      - "3000"
     env_file:
       - .env
-    command: serve -s build -l 3000
   nginx:
     depends_on:
       - doe_backend
@@ -37,7 +36,7 @@ services:
     restart: unless-stopped
     networks:
       - doe-network
-    expose:
+    ports:
       - "5000"
   doe_pg:
     image: "postgres:12"
