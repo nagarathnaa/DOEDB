@@ -11,7 +11,7 @@ services:
     networks:
       - doe-network
     ports:
-      - "3000"
+      - "80:80"
     env_file:
       - .env
   nginx:
@@ -25,7 +25,7 @@ services:
     networks:
       - doe-network
     ports:
-      - 80:80
+      - 1253:80
   doe_backend:
     depends_on:
       - doe_pg
