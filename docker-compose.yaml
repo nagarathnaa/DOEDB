@@ -37,7 +37,7 @@ services:
     restart: unless-stopped
     networks:
       - doe-network
-    ports:
+    expose:
       - "5000"
   doe_pg:
     image: "postgres:12"
