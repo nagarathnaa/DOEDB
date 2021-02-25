@@ -1,44 +1,5 @@
-version: "3"
+version: "3.9"
 services:
-  doe_frontend:
-    container_name: "doe_frontend"
-    build:
-      context: /home/devops/myagent/_work/3/s/
-      dockerfile: Dockerfile
-      args:
-        - ServerUrl= ${ENV_API_URL}
-    restart: unless-stopped
-    networks:
-      - doe-network
-    expose:
-      - 3000
-    env_file:
-      - .env
-    command: serve -s build -l 3000
-  nginx:
-    depends_on:
-      - doe_backend
-    container_name: "doe_nginx"
-    build:
-      context: /home/devops/myagent/_work/2/s/
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    networks:
-      - doe-network
-    ports:
-      - 80:80
-  doe_backend:
-    depends_on:
-      - doe_pg
-    container_name: "doe_backend"
-    build:
-      context: /home/devops/myagent/_work/1/s/DOEAssessmentApp
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    networks:
-      - doe-network
-    ports:
-      - "5000"
   doe_pg:
     image: "postgres:12"
     container_name: "doe_postgres"
