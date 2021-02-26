@@ -33,11 +33,7 @@ services:
     build:
       context: /home/devops/myagent/_work/2/s/DOEAssessmentApp
       dockerfile: Dockerfile
-    command: >
-      sh -c "python3 manage.py db init &&
-             python3 manage.py db migrate &&
-			       python3 manage.py db upgrade &&
-			       gunicorn3 wsgi:app --bind 0.0.0.0:5000
+    command: bash -c "python3 manage.py db init && python3 manage.py db migrate && python3 manage.py db upgrade && gunicorn3 wsgi:app --bind 0.0.0.0:5000"
     restart: unless-stopped
     networks:
       - doe-network
