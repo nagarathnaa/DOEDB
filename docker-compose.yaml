@@ -3,7 +3,7 @@ services:
   doe_frontend:
     container_name: "doe_frontend"
     build:
-      context: /home/devops/myagent/_work/3/s/
+      context: /home/devops/myagent/_work/1/s/
       dockerfile: Dockerfile
       args:
         - ServerUrl= ${ENV_API_URL}
@@ -19,7 +19,7 @@ services:
       - doe_backend
     container_name: "doe_nginx"
     build:
-      context: /home/devops/myagent/_work/2/s/
+      context: /home/devops/myagent/_work/3/s/
       dockerfile: Dockerfile
     restart: unless-stopped
     networks:
@@ -31,7 +31,7 @@ services:
       - doe_pg
     container_name: "doe_backend"
     build:
-      context: /home/devops/myagent/_work/1/s/DOEAssessmentApp
+      context: /home/devops/myagent/_work/2/s/DOEAssessmentApp
       dockerfile: Dockerfile
     restart: unless-stopped
     networks:
