@@ -5,13 +5,15 @@ services:
     build:
       context: /home/devops/myagent/_work/3/s/
       dockerfile: Dockerfile
+      args:
+        - ServerUrl= ${ENV_API_URL}
     restart: unless-stopped
     networks:
       - doe-network
     ports:
-      - 80:80
-    links:
-      - doe_backend
+      - "80:80"
+    env_file:
+      - .env
   nginx:
     depends_on:
       - doe_backend

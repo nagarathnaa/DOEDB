@@ -1,0 +1,42 @@
+upstream doe_backend {
+    server doe_backend:5000;
+}
+
+upstream doe_frontend {
+    server doe_frontend:3000;
+}
+
+server {
+
+    listen 80;
+
+    ###########
+    # URL ROUTING #
+    ###########
+
+    
+    location /api {
+        proxy_pass http://doe_backend;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_redirect off;
+    }
+
+    ###########
+    # STATIC FOLDER ROUTING #
+    ###########
+
+
+    ###########
+    # URL ROUTING #
+    ###########
+
+    location / {
+        proxy_pass http://doe_frontend;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header Host $host;
+        proxy_redirect off;
+    }
+
+
+}
