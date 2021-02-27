@@ -3,7 +3,7 @@ services:
   doe_frontend:
     container_name: "doe_frontend"
     build:
-      context: /home/devops/myagent/_work/1/s/
+      context: /home/devops/azure_agent/_work/1/s/
       dockerfile: Dockerfile
       args:
         - ServerUrl= ${ENV_API_URL}
@@ -19,7 +19,7 @@ services:
       - doe_backend
     container_name: "doe_nginx"
     build:
-      context: /home/devops/myagent/_work/3/s/
+      context: /home/devops/azure_agent/_work/3/s/
       dockerfile: Dockerfile
     restart: unless-stopped
     networks:
@@ -31,16 +31,18 @@ services:
       - doe_pg
     container_name: "doe_backend"
     build:
-      context: /home/devops/myagent/_work/2/s/DOEAssessmentApp
+      context: /home/devops/azure_agent/_work/2/s/DOEAssessmentApp
       dockerfile: Dockerfile
-    command: bash -c "python3 manage.py db init && python3 manage.py db migrate && python3 manage.py db upgrade && gunicorn3 wsgi:app --bind 0.0.0.0:5000"
+    command: bash -c "gunicorn3 wsgi:app --bind 0.0.0.0:5000"
     restart: unless-stopped
     networks:
       - doe-network
     ports:
       - "5000"
   doe_pg:
-    image: "postgres:12"
+    build:
+      context: /home/devops/azure_agent/_work/3/s
+      dockerfile: Dockerfile_postgres
     container_name: "doe_postgres"
     restart: unless-stopped
     env_file:
