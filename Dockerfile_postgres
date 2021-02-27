@@ -1,0 +1,4 @@
+FROM postgres:12
+COPY dump_27_2_2021.pgsql /
+COPY init-db-dump.sh /docker-entrypoint-initdb.d/
+EXPOSE 5432
