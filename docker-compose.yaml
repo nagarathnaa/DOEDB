@@ -40,21 +40,15 @@ services:
     ports:
       - "5000"
   doe_pg:
-    build:
-      context: /home/devops/azure_agent/_work/3/s
-      dockerfile: Dockerfile_postgres
+    image: postgres:12
     container_name: "doe_postgres"
     restart: unless-stopped
     env_file:
       - Database.env
-    volumes:
-      - postgres:/var/lib/postgresql/data
     networks:
       - doe-network
     ports:
       - 5432:5432
-volumes:
-    postgres:
 networks:
   doe-network:
     driver: bridge
