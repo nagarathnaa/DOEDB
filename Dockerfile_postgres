@@ -1,5 +1,5 @@
 FROM postgres:12
+ENV POSTGRES_PASSWORD="D3v0p5En@bleR"
+COPY init-user-db.sh  /docker-entrypoint-initdb.d/
 COPY dump_27_2_2021.pgsql /
-COPY db-entrypoint.sh /
 EXPOSE 5432
-ENTRYPOINT ["/db-entrypoint.sh"]
