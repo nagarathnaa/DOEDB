@@ -1,7 +1,7 @@
 version: "3"
 services:
-  doe_frontend:
-    container_name: "doe_frontend"
+  frontend:
+    container_name: "frontend"
     build:
       context: /home/devops/myagent/_work/3/s/
       dockerfile: Dockerfile
@@ -12,31 +12,23 @@ services:
       - doe-network
     ports:
       - "80:80"
+      - "443:443"
     env_file:
       - .env
-  nginx:
-    depends_on:
-      - doe_backend
-    container_name: "doe_nginx"
-    build:
-      context: /home/devops/myagent/_work/2/s/
-      dockerfile: Dockerfile
-    restart: unless-stopped
-    networks:
-      - doe-network
-    ports:
-      - 1253:80
-  doe_backend:
+    volumes:
+      - /home/devops/myagent/_work/3/s/certs:/etc/nginx/certs
+  
+  backend:
     depends_on:
       - doe_pg
-    container_name: "doe_backend"
+    container_name: "backend"
     build:
       context: /home/devops/myagent/_work/1/s/DOEAssessmentApp
       dockerfile: Dockerfile
     restart: unless-stopped
     networks:
       - doe-network
-    ports:
+    expose:
       - "5000"
   doe_pg:
     image: "postgres:12"
