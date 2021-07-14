@@ -28,6 +28,18 @@ services:
       - doe-network
     expose:
       - "5000"
+  socket:
+    depends_on:
+      - backend
+    container_name: "notificationsocket"
+    build:
+      context: /home/devops/myagent/_work/4/s
+      dockerfile: Dockerfile
+    restart: unless-stopped
+    networks:
+      - doe-network
+    expose:
+      - "5002"
   doe_pg:
     image: "postgres:12"
     container_name: "doe_postgres"
