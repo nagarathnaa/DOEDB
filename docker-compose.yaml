@@ -38,8 +38,8 @@ services:
     restart: unless-stopped
     networks:
       - doe-network
-    expose:
-      - "5002"
+    ports:
+      - 5002:5002
   doe_pg:
     image: "postgres:12"
     container_name: "doe_postgres"
