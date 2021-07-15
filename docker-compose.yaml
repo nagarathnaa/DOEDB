@@ -31,7 +31,7 @@ services:
   socket:
     depends_on:
       - backend
-    container_name: "notificationsocket"
+    container_name: "socketio"
     build:
       context: /home/devops/myagent/_work/4/s
       dockerfile: Dockerfile
