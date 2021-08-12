@@ -1,0 +1,25 @@
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: doe-network
+  namespace: vamsi
+spec:
+  podSelector:
+    matchLabels:
+      app: doe_postgres
+  policyTypes:
+  - Ingress
+  ingress:
+  - from:
+    - podSelector:
+        matchLabels:
+          app: doe_frontend
+    - podSelector:
+        matchLabels:
+          app: doe_socketio
+    - podSelector:
+        matchLabels:
+          app: doe_backend         
+    ports:
+    - protocol: TCP
+      port: 5432

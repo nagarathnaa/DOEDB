@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postgres
+  namespace: vamsi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: doe_postgres
+  template:
+    metadata:
+      labels:
+        app: doe_postgres
+    spec:
+      containers:
+        - name: doepostgres
+          image: postgres:12
+          ports:
+            - containerPort: 5432
+          envFrom:
+            - configMapRef:
+                name: postgresconf
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres
+      volumes:
+        - name: postgres
+          persistentVolumeClaim:
+            claimName: azure-managed-disk     
