@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: postgresconf
-  namespace: vamsi
+  namespace: dev
   labels:
     app: doe_postgres
 data:
