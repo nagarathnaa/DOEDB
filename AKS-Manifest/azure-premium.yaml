@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: azure-managed-disk
-  namespace: vamsi
+  namespace: dev
 spec:
   accessModes:
   - ReadWriteOnce
