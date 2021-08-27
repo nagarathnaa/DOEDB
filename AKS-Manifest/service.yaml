@@ -5,7 +5,8 @@ metadata:
   labels:
     app: doe_postgres
 spec:
-  type: ClusterIP
+  loadBalancerIP: #{dblbip}#
+  type: #{type}#
   ports:
    - port: 5432
   selector:
